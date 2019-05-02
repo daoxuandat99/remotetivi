@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Remote() {
+        this.chanel = 0;
+        this.volume = 0;
+        this.getChanel = function () {
+            return this.chanel;
+        };
+        this.setChanel = function (chanel) {
+            this.chanel = chanel;
+        };
+        this.getVolume = function () {
+            return this.volume;
+        };
+        this.setVolume = function (volume) {
+            this.volume = volume;
+        };
+        this.turnOn = function () {
+            this.status = true;
+        };
+        this.turnOf = function () {
+            this.status = false;
+        }
+
+    }
+
+    function Television(volume, chanel) {
+        this.volume = volume;
+        this.chanel = chanel;
+        this.connectRemote = function (remote) {
+            this.chanel = remote.chanel;
+            this.volume = remote.volume;
+            this.status = remote.status;
+        };
+        this.turnOn = function () {
+            this.status = true;
+        };
+        this.turnOf = function () {
+            this.status = false;
+        };
+        this.getStatus = function () {
+            if (this.status) {
+                console.log("tivi đang bật");
+            } else {
+                console.log("tivi đang tắt");
+            }
+        };
+        this.getChanel = function () {
+            return this.chanel;
+        };
+        this.setChanel = function (chanel) {
+            this.chanel = chanel;
+        };
+        this.getVolume = function () {
+            return this.volume;
+        };
+        this.setVolume = function (volume) {
+            this.volume = volume;
+        }
+    }
+
+    let television1 = new Television(1, 10);
+    let remote1 = new Remote();
+
+    television1.turnOn();
+    television1.getStatus();
+    console.log(" kênh hiện thời: " + television1.getChanel());
+
+    television1.setChanel(7);
+    console.log(" chuyển tới kênh: " + television1.getChanel());
+
+    remote1.setChanel(3);
+    television1.connectRemote(remote1);
+    console.log(" chuyển tới kênh: " + television1.getChanel());
+
+    television1.setVolume(10);
+    console.log(" tăng âm lượng: " + (television1.getVolume()+2));
+
+    remote1.turnOf();
+    television1.connectRemote(remote1);
+    television1.getStatus();
+
+
+</script>
+</body>
+</html>
